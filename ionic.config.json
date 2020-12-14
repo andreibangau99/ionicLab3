@@ -1,0 +1,7 @@
+{
+  "name": "Lap2PDM",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
