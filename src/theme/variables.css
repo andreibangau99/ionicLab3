@@ -241,6 +241,7 @@ ion-select{
   border-radius: 4px;
   margin-bottom: 4px;
   margin-left: 5px;
+
 }
 
 /* Set the flex in order to size the text width to its content */
@@ -289,17 +290,36 @@ ion-input:hover {
 ion-button{
   margin-left: 5px;
 }
-ion-item{
-  max-width: 360px;
-}
+/*ion-item{*/
+/*  max-width: 360px;*/
+/*}*/
 jedi:hover{
   background-color: whitesmoke;
 }
-ion-searchbar{
-  max-width: 400px;
+/*ion-searchbar{*/
+/*  max-width: 400px;*/
+/*}*/
+
+
+/*ion-app{*/
+/*  max-width: 400px;*/
+/*}*/
+.stateDiv{
+  display: flex;
+}
+
+.stateDivItem{
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 
-ion-app{
-  max-width: 400px;
+ion-img{
+  max-width: 150px;
 }
+myMap{
+  margin-bottom: 20px;
+}
+
+
