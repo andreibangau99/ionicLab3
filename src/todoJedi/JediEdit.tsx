@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
+  createAnimation,
   IonActionSheet,
   IonButton,
   IonButtons, IonCol,
@@ -43,6 +44,7 @@ const JediEdit: React.FC<JediEditProps> = ({ history, match }) => {
   const [latitude, setLat]=useState(0);
   const [longitude,setLng]=useState(0);
   const [ showMap, setShowMap ] = useState(false);
+  useEffect(groupAnimation,[]);
   const onMapClick = (e: any) =>{
     console.log("click: "+e.latLng.lat()+" , " +e.latLng.lng());
     setLng(e.latLng.lng());
@@ -64,6 +66,41 @@ const JediEdit: React.FC<JediEditProps> = ({ history, match }) => {
       setShowMap(true);
     }
   }, [match.params.id, jedis]);
+  function groupAnimation() {
+    const nameEl = document.querySelector('.inputName');
+    const genderEl = document.querySelector('.selectGender');
+    if (nameEl && genderEl) {
+      const animationName = createAnimation()
+          .addElement(nameEl)
+          .duration(3000)
+          .keyframes([
+            { offset: 0, transform: 'scale(1) rotate(0)' },
+            { offset: 0.25, transform: 'scale(0.5) rotate(-90deg)' },
+            { offset: 0.5, transform: 'scale(0) rotate(-180deg)' },
+            { offset: 0.75, transform: 'scale(0.5) rotate(-270deg)' },
+            {offset: 1, transform: 'scale(1) rotate(-360deg)' }
+          ])
+          .afterStyles({'beckground':'yellow'});
+
+      const animationGender = createAnimation()
+          .addElement(genderEl)
+          .duration(3000)
+          .keyframes([
+            { offset: 0, transform: 'scale(1) rotate(0)' },
+            { offset: 0.25, transform: 'translateX(100px)  scale(1.5) rotate(90deg)' },
+            { offset: 0.5, transform: ' scale(2) rotate(180deg)' },
+            { offset: 0.75, transform: 'translateX(-100px) scale(1.5) rotate(270deg)' },
+            {offset: 1, transform: 'scale(1) rotate(360deg)' }
+          ])
+          .afterStyles({'beckground':'lime'});
+
+      (async () => {
+        await animationName.play();
+        await animationGender.play();
+      })();
+    }
+  }
+
   const handleSave = () => {
     const editedJedi = jedi  ?{ ...jedi, name ,gender,status,latitude,longitude} : { name ,gender,status,latitude,longitude};
     console.log(editedJedi);
@@ -83,8 +120,8 @@ const JediEdit: React.FC<JediEditProps> = ({ history, match }) => {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          <IonInput value={name} placeholder="name" onIonChange={e => setName(e.detail.value || '')} />
-          <IonSelect value={gender} placeholder="gender" okText="Okay" cancelText="Dismiss"
+          <IonInput className={"inputName"} value={name} placeholder="name" onIonChange={e => setName(e.detail.value || '')} />
+          <IonSelect className={"selectGender"} value={gender} placeholder="gender" okText="Okay" cancelText="Dismiss"
                      onIonChange={e => setGender(e.detail.value) }>
             <IonSelectOption value="M">M</IonSelectOption>
             <IonSelectOption value="F">F</IonSelectOption>

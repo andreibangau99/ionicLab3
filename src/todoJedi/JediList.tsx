@@ -21,6 +21,7 @@ import {useAppState} from "./jediAppState";
 import {useNetwork} from "./jediUseNetwork";
 import { addToStorage, getFromStorage, getListFromStorage, removeFromStorage } from '../localStorage/localStorageApi';
 import {Photo, usePhotoGallery} from "../forPhoto/usePhotoGallery";
+import {MyModal} from "../animations/MyModal";
 const log = getLogger('JediList');
 
 const JediList: React.FC<RouteComponentProps> = ({ history }) => {
@@ -158,8 +159,8 @@ const JediList: React.FC<RouteComponentProps> = ({ history }) => {
                         <Jedi key={_id} _id={_id} name={name} gender={gender} status={status} latitude={latitude} longitude={longitude}
                               onEdit={id => history.push(`/jedi/${id}`)}/>
 
-                        <IonImg   src={photos.filter(p=>p.jediID===_id).shift()?.webviewPath} />
 
+                        <MyModal key={_id} _id={_id} photo={photos.filter(p=>p.jediID===_id).shift()?.webviewPath}/>
 
 
                       </div>

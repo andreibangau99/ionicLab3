@@ -24,6 +24,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import { JediProvider } from './todoJedi/JediProvider';
 import {AuthProvider, Login, PrivateRoute} from "./auth";
+import JediAdd from "./todoJedi/JediAdd";
 
 
 const App: React.FC = () => (
@@ -34,7 +35,7 @@ const App: React.FC = () => (
                     <Route path="/login" component={Login} exact={true}/>
                     <JediProvider>
                         <PrivateRoute path="/jedis" component={JediList} exact={true}/>
-                        <PrivateRoute path="/jedi" component={JediEdit} exact={true}/>
+                        <PrivateRoute path="/jedi" component={JediAdd} exact={true}/>
                         <PrivateRoute path="/jedi/:id" component={JediEdit} exact={true}/>
                     </JediProvider>
                     <Route exact path="/" render={() => <Redirect to="/jedis"/>}/>
