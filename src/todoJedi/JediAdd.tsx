@@ -117,11 +117,11 @@ const JediAdd: React.FC<JediEditProps> = ({ history, match }) => {
         console.log(saveJedi);
         if(name==""){
             warningInputName();
-            if(gender==""){
+            if(gender==""|| gender == undefined){
                 warningSelectGender()
             }
         }
-        else if(gender==""){
+        else if(gender=="" || gender==undefined){
             warningSelectGender()
         }
         else{
